@@ -15,37 +15,37 @@ export default {
         }
     },
     "sites": [
-        // {
-        //     "name": "letterboxd",
-        //     "feed": "https://letterboxd.com/tristanhampton/rss",
-        //     "json": false,
-        //     "services": [
-        //         "github"
-        //     ],
-        //     "transform": {
-        //         getId: (data) => {
-        //             return data.guid
-        //         },
-        //         format: (data) => {
-        //             const frontMatterTag = '---\n';
-        //             let content = frontMatterTag;
-        //             const title = helpers.getLetterboxdMovieTitle(data.title);
-        //             content += `title: "${title}"\n`;
-        //             content += `id: ${data.guid}\n`;
-        //             content += `poster: ${helpers.getLetterboxdMoviePoster(data.content)}\n`;
-        //             content += `link: ${data.link}\n`;
-        //             content += `review: "${data.contentSnippet}"\n`;
-        //             content += `isoDate: ${data.isoDate}\n`
-        //             content += frontMatterTag;
-        //             content += data.content;
-        //             return {
-        //                 content: content.trim(),
-        //                 date: new Date(data.isoDate).toISOString(),
-        //                 filePath: `src/content/letterboxd/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
-        //             }
-        //         }
-        //     }
-        // },
+        {
+            "name": "letterboxd",
+            "feed": "https://letterboxd.com/tristanhampton/rss",
+            "json": false,
+            "services": [
+                "github"
+            ],
+            "transform": {
+                getId: (data) => {
+                    return data.guid
+                },
+                format: (data) => {
+                    const frontMatterTag = '---\n';
+                    let content = frontMatterTag;
+                    const title = helpers.getLetterboxdMovieTitle(data.title);
+                    content += `title: "${title}"\n`;
+                    content += `id: ${data.guid}\n`;
+                    content += `poster: ${helpers.getLetterboxdMoviePoster(data.content)}\n`;
+                    content += `link: ${data.link}\n`;
+                    content += `review: "${data.contentSnippet}"\n`;
+                    content += `isoDate: ${data.isoDate}\n`
+                    content += frontMatterTag;
+                    content += data.content;
+                    return {
+                        content: content.trim(),
+                        date: new Date(data.isoDate).toISOString(),
+                        filePath: `src/content/letterboxd/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+                    }
+                }
+            }
+        },
         {
             "name": "goodreads",
             "feed": "https://www.goodreads.com/user/updates_rss/105651598-tristan-hampton",
