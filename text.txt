@@ -1,1 +1,0 @@
-If this is in the server, Cron is working.
