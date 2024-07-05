@@ -1,6 +1,5 @@
 import helpers from './lib/helpers.js'
 const TOKEN = process.env.GIT_TOKEN
-console.log(TOKEN)
 
 export default {
     "services": {
