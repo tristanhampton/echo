@@ -35,7 +35,7 @@ export default {
                     content += `poster: ${helpers.getLetterboxdMoviePoster(data.content)}\n`;
                     content += `link: ${data.link}\n`;
                     content += `review: "${data.contentSnippet}"\n`;
-                    content += `isoDate: ${data.isoDate}\n`
+                    content += `date: ${data.isoDate}\n`
                     content += frontMatterTag;
                     content += data.content;
                     return {
@@ -82,6 +82,43 @@ export default {
                     return items.filter(item => {
                         return item.guid.includes('Review')
                     })
+                }
+            }
+        },
+        {
+            "name": "strava",
+            "feed": "https://feedmyride.net/activities/87509611",
+            "json": false,
+            "services": [
+                "github"
+            ],
+            "transform": {
+                getId: (data) => {
+                    return data.guid
+                },
+                format: (data) => {
+                    const title = data.title;
+                    const details = helpers.getStravaData(data.content);
+                    const frontMatterTag = '---\n';
+                    let content = frontMatterTag;
+                    content += `title: "${title}"\n`;
+                    content += `id: ${data.guid}\n`;
+                    content += `link: ${data.link}\n`;
+                    content += `date: ${data.isoDate}\n`;
+                    content += `rideDate: ${helpers.convertISODate(data.isoDate)}\n`;
+                    content += `pubDate: ${data.pubDate}\n`;
+                    content += `type: ${helpers.getStravaType(data.content)}\n`;
+                    content += `distance: ${details.distance}\n`;
+                    content += `elevation: ${details.elevation}\n`;
+                    content += `time: ${details.time}\n`;
+                    content += `speed: ${details.speed}\n`;
+                    content += frontMatterTag;
+                    content += data.content;
+                    return {
+                        content: content.trim(),
+                        date: new Date(data.isoDate).toISOString(),
+                        filePath: `src/content/strava/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+                    }
                 }
             }
         }
