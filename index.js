@@ -24,6 +24,10 @@ async function getFeedItems(feed, isJson, customFields)
     {
         const res = await fetch(feed)
         const feedData = await res.json()
+
+        if (feed.includes('steampowered')) {
+            return feedData.response.games;
+        }
         return feedData.items
     }
 
