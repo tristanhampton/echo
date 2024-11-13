@@ -7,9 +7,9 @@ const STEAM_USER_ID = process.env.STEAM_USER_ID;
 export default {
   "services": {
     "github": {
-      "repo": "tristanhampton/portfolio-2022",
+      "repo": "tristanhampton/portfolio-2024",
       "token": TOKEN,
-      "branch": "master",
+      "branch": "main",
       "committer": {
         "name": "Tristan Hampton",
         "email": "tristanhampton@icloud.com"
