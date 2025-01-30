@@ -7,7 +7,7 @@ const STEAM_USER_ID = process.env.STEAM_USER_ID;
 export default {
   "services": {
     "github": {
-      "repo": "tristanhampton/playground",
+      "repo": "tristanhampton/echo-data",
       "token": TOKEN,
       "branch": "main",
       "committer": {
@@ -43,7 +43,7 @@ export default {
           return {
             content: content.trim(),
             date: new Date(data.isoDate).toISOString(),
-            filePath: `src/content/letterboxd/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/letterboxd/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
           }
         }
       }
@@ -76,7 +76,7 @@ export default {
           return {
             content: content.trim(),
             date: new Date(data.isoDate).toISOString(),
-            filePath: `src/content/goodreads/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/goodreads/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
           }
         },
         filter: (items) => {
@@ -135,6 +135,7 @@ export default {
         getId: (data) => {
           // 2024-08-31-gameID
           // set daily id so that it can be updated daily, even though the script is runnin hourly
+          console.log(data.appid)
           const id = `${new Date().getFullYear()}-${new Date().getDate()}-${new Date().getMonth()}-${data.appid}`;
           return id
         },
@@ -158,7 +159,7 @@ export default {
           return {
             content: content.trim(),
             date: new Date().toISOString(),
-            filePath: `src/content/steam/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/steam/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
           }
         }
       }
