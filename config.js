@@ -119,7 +119,7 @@ export default {
           return {
             content: content.trim(),
             date: new Date(data.isoDate).toISOString(),
-            filePath: `src/content/strava/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/strava/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
           }
         }
       }
