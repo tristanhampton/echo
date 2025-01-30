@@ -159,7 +159,7 @@ export default {
           return {
             content: content.trim(),
             date: new Date().toISOString(),
-            filePath: `src/_content/_collections/steam/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/steam/${helpers.slugify(title)}.md`,
           }
         }
       }
