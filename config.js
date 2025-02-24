@@ -7,7 +7,7 @@ const STEAM_USER_ID = process.env.STEAM_USER_ID;
 export default {
   "services": {
     "github": {
-      "repo": "tristanhampton/echo-data",
+      "repo": "tristanhampton/playground",
       "token": TOKEN,
       "branch": "main",
       "committer": {
@@ -26,7 +26,8 @@ export default {
       ],
       "transform": {
         getId: (data) => {
-          return data.guid
+          const title = helpers.getLetterboxdMovieTitle(data.title);
+          return `${title}-${data.guid}`;
         },
         format: (data) => {
           const frontMatterTag = '---\n';
@@ -57,10 +58,11 @@ export default {
       ],
       "transform": {
         getId: (data) => {
-          return data.guid
+          const title = helpers.getGoodreadsBookTitle(data.title);
+          return `${title}-${data.guid}`
         },
         format: (data) => {
-          const title = helpers.getGoodreadsBookTitle(data.title)
+          const title = helpers.getGoodreadsBookTitle(data.title);
           const frontMatterTag = '---\n';
           let content = frontMatterTag;
           content += `title: "${title}"\n`;
@@ -96,7 +98,7 @@ export default {
       ],
       "transform": {
         getId: (data) => {
-          return data.guid
+          return `${data.title}-${data.guid}`
         },
         format: (data) => {
           const title = data.title;
@@ -135,8 +137,7 @@ export default {
         getId: (data) => {
           // 2024-08-31-gameID
           // set daily id so that it can be updated daily, even though the script is runnin hourly
-          console.log(data.appid)
-          const id = `${new Date().getFullYear()}-${new Date().getDate()}-${new Date().getMonth()}-${data.appid}`;
+          const id = `${data.name}-${new Date().getFullYear()}-${new Date().getDate()}-${new Date().getMonth()}-${data.appid}`;
           return id
         },
         format: (data) => {
