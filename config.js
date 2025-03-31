@@ -116,12 +116,18 @@ export default {
           content += `elevation: ${details.elevation}\n`;
           content += `time: ${details.time}\n`;
           content += `speed: ${details.speed}\n`;
+
+          // Add a tag if it's a dog walk for my Kuzco tracker
+          if (title.toLowerCase().includes('dog walk')) {
+            content += `tags: kuzco-tracker\n`;
+          }
+
           content += frontMatterTag;
           content += data.content;
           return {
             content: content.trim(),
             date: new Date(data.isoDate).toISOString(),
-            filePath: `src/_content/_collections/strava/${new Date().getFullYear()}-${helpers.slugify(title)}.md`,
+            filePath: `src/_content/_collections/strava/${data.isoDate}-${helpers.slugify(title)}.md`,
           }
         }
       }
